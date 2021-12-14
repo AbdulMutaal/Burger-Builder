@@ -27,7 +27,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients.json')
+        axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients')
             .then(response => {
                 if (!this.state.ingredients) {
                     this.setState({ingredients: response.data});

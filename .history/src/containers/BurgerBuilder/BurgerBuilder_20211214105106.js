@@ -22,19 +22,15 @@ class BurgerBuilder extends Component {
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false,
-        error: false
+        loading: false
     }
 
     componentDidMount () {
         axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients.json')
             .then(response => {
-                if (!this.state.ingredients) {
+                if (!this.state,ingredients) {
                     this.setState({ingredients: response.data});
                 }
-            })
-            .catch(error => {
-                this.setState({error: true});
             });
     }
 
@@ -127,9 +123,17 @@ class BurgerBuilder extends Component {
             disabledInfo[key] = disabledInfo[key] <= 0
         }
 
-        let orderSummary = null;
+        let orderSummary = <OrderSummary 
+            ingredients={this.state.ingredients}
+            price={this.state.totalPrice}
+            purchaseCancelled={this.purchaseCancelHandler}
+            purchaseContinue={this.purchaseContinueHandler} />;
 
-        let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
+        if (this.state.loading) {
+            orderSummary = <Spinner />;
+        }
+
+        let burger = <Spinner />;
 
         if (this.state.ingredients) {
             burger = (
@@ -144,15 +148,6 @@ class BurgerBuilder extends Component {
                         price={this.state.totalPrice} />
                 </Auxiliary>
             );
-            orderSummary = <OrderSummary 
-                ingredients={this.state.ingredients}
-                price={this.state.totalPrice}
-                purchaseCancelled={this.purchaseCancelHandler}
-                purchaseContinue={this.purchaseContinueHandler} />;
-        }
-
-        if (this.state.loading) {
-            orderSummary = <Spinner />;
         }
 
         return (
@@ -160,7 +155,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
-                {burger}
+                
             </Auxiliary>
         );
     }

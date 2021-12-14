@@ -22,19 +22,15 @@ class BurgerBuilder extends Component {
         totalPrice: 4,
         purchasable: false,
         purchasing: false,
-        loading: false,
-        error: false
+        loading: false
     }
 
     componentDidMount () {
         axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients.json')
             .then(response => {
-                if (!this.state.ingredients) {
+                if (!this.state,ingredients) {
                     this.setState({ingredients: response.data});
                 }
-            })
-            .catch(error => {
-                this.setState({error: true});
             });
     }
 
@@ -129,7 +125,7 @@ class BurgerBuilder extends Component {
 
         let orderSummary = null;
 
-        let burger = this.state.error ? <p>Ingredients can't be loaded!</p> : <Spinner />;
+        let burger = <Spinner />;
 
         if (this.state.ingredients) {
             burger = (
@@ -160,7 +156,7 @@ class BurgerBuilder extends Component {
                 <Modal show={this.state.purchasing} modalClosed={this.purchaseCancelHandler}>
                     {orderSummary}
                 </Modal>
-                {burger}
+                
             </Auxiliary>
         );
     }
