@@ -94,7 +94,7 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // alert('You continue');
+        alert('You continue');
         this.setState({loading: true});
         const order = {
             ingredients: this.state.ingredients,

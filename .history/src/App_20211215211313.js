@@ -8,10 +8,9 @@ function App() {
   return (
     <div>
       <Layout>
-          <Routes>
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/" exact element={<BurgerBuilder />} />
-          </Routes>
+
+        <BurgerBuilder />
+        <Checkout />
       </Layout>
     </div>
   );

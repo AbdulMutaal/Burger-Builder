@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 
 import Layout from './hoc/Layout/Layout';
 import BurgerBuilder from './containers/BurgerBuilder/BurgerBuilder';
@@ -8,10 +8,8 @@ function App() {
   return (
     <div>
       <Layout>
-          <Routes>
-            <Route path="/checkout" element={<Checkout />} />
-            <Route path="/" exact element={<BurgerBuilder />} />
-          </Routes>
+        <BurgerBuilder />
+        <Checkout />
       </Layout>
     </div>
   );

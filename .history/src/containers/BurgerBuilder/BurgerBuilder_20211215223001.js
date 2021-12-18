@@ -28,7 +28,7 @@ class BurgerBuilder extends Component {
     }
 
     componentDidMount () {
-        axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients.json')
+        axios.get('https://burger-builder-28ccb-default-rtdb.firebaseio.com/ingredients.jshgon')
             .then(response => {
                 if (!this.state.ingredients) {
                     this.setState({ingredients: response.data});
@@ -94,31 +94,31 @@ class BurgerBuilder extends Component {
     }
 
     purchaseContinueHandler = () => {
-        // alert('You continue');
-        this.setState({loading: true});
-        const order = {
-            ingredients: this.state.ingredients,
-            price: this.state.totalPrice,
-            customer: {
-                name: "Tom Cruise",
-                address: {
-                    street: 'street 1',
-                    zipCode:  '41351',
-                    country: 'Germany'
-                },
-                email: 'test@test.com'
-            },
-            deliveryMethod: 'fastest'
-        }
-        axios.post('/orders', order)
-            .then(response => {
-                this.setState({loading: false, purchasing: false});
-            })
-            .catch(error => {
-                this.setState({loading: false, purchasing: false});
-            });
-        // const {navigate} = this.props;
-        // navigate('/checkout');
+        //alert('You continue');
+        // this.setState({loading: true});
+        // const order = {
+        //     ingredients: this.state.ingredients,
+        //     price: this.state.totalPrice,
+        //     customer: {
+        //         name: "Tom Cruise",
+        //         address: {
+        //             street: 'street 1',
+        //             zipCode:  '41351',
+        //             country: 'Germany'
+        //         },
+        //         email: 'test@test.com'
+        //     },
+        //     deliveryMethod: 'fastest'
+        // }
+        // axios.post('/orders.json', order)
+        //     .then(response => {
+        //         this.setState({loading: false, purchasing: false});
+        //     })
+        //     .catch(error => {
+        //         this.setState({loading: false, purchasing: false});
+        //     });
+        const {navigate} = this.props;
+        navigate('/checkout');
     }
 
     render () {
@@ -174,4 +174,4 @@ class BurgerBuilder extends Component {
 
 //     return (<BurgerBuilder {...props} navigate={navigate} />);
 // }, axios);
-export default withErrorHandler(BurgerBuilder, axios);
+export default BurgerBuilder;
